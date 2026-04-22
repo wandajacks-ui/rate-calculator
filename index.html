@@ -25,9 +25,9 @@ body {
 }
 
 .hero h1 {
-    font-size: 2.1rem;
+    font-size: 2rem;
     line-height: 1.15;
-    margin-bottom: 10px;
+    margin: 0 0 10px 0;
 }
 
 .hero p {
@@ -35,21 +35,47 @@ body {
     margin: 0;
 }
 
-.card {
+.calc {
     background: white;
-    padding: 16px;
     border-radius: 10px;
     box-shadow: 0 10px 24px rgba(0,0,0,0.07);
-    margin-top: 18px;
+    margin-top: 16px;
+    overflow: hidden;
 }
 
-.card h2 {
-    font-size: 1.2rem;
-    margin: 0 0 12px 0;
+.calc summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 16px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.card p {
-    margin-top: 0;
+.calc summary::-webkit-details-marker {
+    display: none;
+}
+
+.calc summary::after {
+    content: "+";
+    font-size: 1.3rem;
+    line-height: 1;
+    color: #2563eb;
+}
+
+.calc[open] summary::after {
+    content: "−";
+}
+
+.calc-content {
+    padding: 0 16px 16px 16px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.calc-content p {
+    margin-top: 12px;
     margin-bottom: 12px;
     font-size: 0.95rem;
 }
@@ -93,11 +119,16 @@ button:hover {
 
 @media (max-width: 640px) {
     .hero h1 {
-        font-size: 1.7rem;
+        font-size: 1.65rem;
     }
 
-    .card {
+    .calc summary {
+        font-size: 1rem;
         padding: 14px;
+    }
+
+    .calc-content {
+        padding: 0 14px 14px 14px;
     }
 }
 </style>
@@ -106,81 +137,90 @@ button:hover {
 <body>
 
 <div class="wrap">
-
     <div class="hero">
         <h1>Freelance Rate & Income Calculators</h1>
         <p>Figure out what to charge, what you’ll earn, what hourly rate you need, and what to quote for a project.</p>
     </div>
 
-    <div class="card">
-        <h2>Monthly Goal → Hourly Rate</h2>
+    <details class="calc" open>
+        <summary>Monthly Goal → Hourly Rate</summary>
+        <div class="calc-content">
+            <p>Enter your monthly goal, expenses, and hours per week to estimate your hourly rate.</p>
 
-        <label>Monthly Income Goal</label>
-        <input id="income" type="number" value="4000">
+            <label>Monthly Income Goal</label>
+            <input id="income" type="number" value="4000">
 
-        <label>Monthly Expenses</label>
-        <input id="expenses" type="number" value="1000">
+            <label>Monthly Expenses</label>
+            <input id="expenses" type="number" value="1000">
 
-        <label>Hours Per Week</label>
-        <input id="hours" type="number" value="30">
+            <label>Hours Per Week</label>
+            <input id="hours" type="number" value="30">
 
-        <button onclick="calculate()">Calculate</button>
+            <button onclick="calculate()">Calculate</button>
 
-        <div class="result" id="result"></div>
-    </div>
+            <div class="result" id="result"></div>
+        </div>
+    </details>
 
-    <div class="card">
-        <h2>Hourly Rate → Yearly Income</h2>
+    <details class="calc">
+        <summary>Hourly Rate → Yearly Income</summary>
+        <div class="calc-content">
+            <p>Enter your hourly rate, hours per week, and weeks per year to estimate annual income.</p>
 
-        <label>Hourly Rate</label>
-        <input id="hourlyRate" type="number" value="35">
+            <label>Hourly Rate</label>
+            <input id="hourlyRate" type="number" value="35">
 
-        <label>Hours Per Week</label>
-        <input id="hoursPerWeekIncome" type="number" value="30">
+            <label>Hours Per Week</label>
+            <input id="hoursPerWeekIncome" type="number" value="30">
 
-        <label>Weeks Per Year</label>
-        <input id="weeksPerYear" type="number" value="48">
+            <label>Weeks Per Year</label>
+            <input id="weeksPerYear" type="number" value="48">
 
-        <button onclick="calculateIncome()">Calculate</button>
+            <button onclick="calculateIncome()">Calculate</button>
 
-        <div class="result" id="incomeResult"></div>
-    </div>
+            <div class="result" id="incomeResult"></div>
+        </div>
+    </details>
 
-    <div class="card">
-        <h2>Yearly Goal → Required Hourly Rate</h2>
+    <details class="calc">
+        <summary>Yearly Goal → Required Hourly Rate</summary>
+        <div class="calc-content">
+            <p>Enter your yearly income goal, hours per week, and weeks per year to see the hourly rate you need.</p>
 
-        <label>Yearly Income Goal</label>
-        <input id="yearlyGoal" type="number" value="75000">
+            <label>Yearly Income Goal</label>
+            <input id="yearlyGoal" type="number" value="75000">
 
-        <label>Hours Per Week</label>
-        <input id="hoursPerWeekGoal" type="number" value="30">
+            <label>Hours Per Week</label>
+            <input id="hoursPerWeekGoal" type="number" value="30">
 
-        <label>Weeks Per Year</label>
-        <input id="weeksPerYearGoal" type="number" value="48">
+            <label>Weeks Per Year</label>
+            <input id="weeksPerYearGoal" type="number" value="48">
 
-        <button onclick="calculateHourlyNeeded()">Calculate</button>
+            <button onclick="calculateHourlyNeeded()">Calculate</button>
 
-        <div class="result" id="hourlyNeededResult"></div>
-    </div>
+            <div class="result" id="hourlyNeededResult"></div>
+        </div>
+    </details>
 
-    <div class="card">
-        <h2>Project Price Calculator</h2>
-        <p>Estimate what to charge for a project based on your hourly rate, hours required, and an extra buffer.</p>
+    <details class="calc">
+        <summary>Project Price Calculator</summary>
+        <div class="calc-content">
+            <p>Estimate what to charge for a project based on your hourly rate, hours required, and an extra buffer.</p>
 
-        <label>Your Hourly Rate</label>
-        <input id="projectHourlyRate" type="number" value="50">
+            <label>Your Hourly Rate</label>
+            <input id="projectHourlyRate" type="number" value="50">
 
-        <label>Estimated Hours for Project</label>
-        <input id="projectHours" type="number" value="12">
+            <label>Estimated Hours for Project</label>
+            <input id="projectHours" type="number" value="12">
 
-        <label>Extra Buffer Percentage</label>
-        <input id="projectBuffer" type="number" value="15">
+            <label>Extra Buffer Percentage</label>
+            <input id="projectBuffer" type="number" value="15">
 
-        <button onclick="calculateProjectPrice()">Calculate</button>
+            <button onclick="calculateProjectPrice()">Calculate</button>
 
-        <div class="result" id="projectResult"></div>
-    </div>
-
+            <div class="result" id="projectResult"></div>
+        </div>
+    </details>
 </div>
 
 <script>

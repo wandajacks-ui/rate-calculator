@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Freelance Rate Calculator – What Should I Charge?</title>
+<meta name="description" content="Free freelance rate calculator. Find your ideal hourly rate, yearly income targets, and project pricing in minutes.">
 
 <style>
 body {
@@ -80,6 +81,14 @@ body {
     font-size: 0.95rem;
 }
 
+.card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.07);
+    margin-top: 16px;
+    padding: 16px;
+}
+
 label {
     display: block;
     margin-top: 10px;
@@ -117,6 +126,28 @@ button:hover {
     font-size: 1rem;
 }
 
+.lead-box {
+    margin-top: 16px;
+    padding: 14px;
+    background: #f0f4ff;
+    border-radius: 8px;
+}
+
+.lead-box p {
+    margin: 6px 0;
+    font-size: 0.94rem;
+}
+
+.faq h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.faq p {
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
 @media (max-width: 640px) {
     .hero h1 {
         font-size: 1.65rem;
@@ -127,8 +158,9 @@ button:hover {
         padding: 14px;
     }
 
-    .calc-content {
-        padding: 0 14px 14px 14px;
+    .calc-content,
+    .card {
+        padding: 14px;
     }
 }
 </style>
@@ -136,15 +168,19 @@ button:hover {
 
 <body>
 
-<div class="hero">
-    <h1>Freelance Rate & Income Calculators</h1>
-   <p style="opacity: 0.8;">Free tools for freelancers, contractors, and service providers.</p>
-    <p style="margin-top: 6px;">Figure out what to charge, what you’ll earn, what hourly rate you need, and what to quote for a project.</p>
-</div>
-<div style="margin: 18px 0; font-size: 0.95rem; line-height: 1.5;">
-    <p><strong>How this works:</strong></p>
-    <p>This page helps freelancers and service providers figure out what to charge, what they’ll earn, and how to price projects. Use the calculators below to estimate your ideal hourly rate and income.</p>
-</div>
+<div class="wrap">
+    <div class="hero">
+        <h1>Freelance Rate & Income Calculators</h1>
+        <p style="opacity: 0.8;">Free tools for freelancers, contractors, and service providers.</p>
+        <p style="margin-top: 6px;">Figure out what to charge, what you’ll earn, what hourly rate you need, and what to quote for a project.</p>
+        <p style="margin-top: 10px; font-size: 0.95rem; opacity: 0.7;">Used by freelancers, service providers, and small business owners to price more confidently.</p>
+    </div>
+
+    <div style="margin: 18px 0; font-size: 0.95rem; line-height: 1.5;">
+        <p><strong>How this works:</strong></p>
+        <p>This page helps freelancers and service providers figure out what to charge, what they’ll earn, and how to price projects. Use the calculators below to estimate your ideal hourly rate and income.</p>
+    </div>
+
     <details class="calc" open>
         <summary>Monthly Goal → Hourly Rate</summary>
         <div class="calc-content">
@@ -162,17 +198,23 @@ button:hover {
             <button onclick="calculate()">Calculate</button>
 
             <div class="result" id="result"></div>
-<div style="margin-top: 16px; padding: 14px; background: #f0f4ff; border-radius: 8px;">
-  <strong>Want a personalized pricing plan?</strong>
-  <p style="margin: 6px 0;">I’ll break down your exact pricing strategy and income plan.</p>
 
-  <input id="emailCapture" type="email" placeholder="Enter your email"
-         style="width: 100%; padding: 10px; margin-bottom: 8px;">
+            <div class="lead-box">
+                <strong>Get your exact pricing strategy, not just a number</strong>
+                <p>
+                    Includes:
+                    <br>✔ What to charge
+                    <br>✔ How to increase income without more hours
+                    <br>✔ Simple pricing mistakes to avoid
+                </p>
 
-  <button onclick="captureLead()">Get My Pricing Plan</button>
+                <input id="emailCapture" type="email" placeholder="Enter your email">
 
-  <div id="leadMessage" style="margin-top: 8px;"></div>
-</div>
+                <button onclick="captureLead()">Get My Pricing Plan</button>
+
+                <div id="leadMessage" style="margin-top: 8px;"></div>
+            </div>
+        </div>
     </details>
 
     <details class="calc">
@@ -232,27 +274,22 @@ button:hover {
             <button onclick="calculateProjectPrice()">Calculate</button>
 
             <div class="result" id="projectResult"></div>
-        </div> <!-- last calculator -->
+        </div>
     </details>
 
-</div> <!-- wrap -->
+    <div class="card faq" style="margin-top: 40px;">
+        <h2>Common Questions</h2>
 
-<!-- 👇 ADD FAQ RIGHT HERE -->
-<div class="card" style="margin-top: 40px;">
-   <h2 style="margin-bottom: 10px;">Still Not Sure?</h2>
-    <h3>Common Questions</h3>
+        <p><strong>How do I know if I’m undercharging?</strong><br>
+        If your income doesn’t match your goals or workload, you’re likely undercharging. Use the calculator above to compare your current rate to your target income.</p>
 
-    <p><strong>How do I know if I’m undercharging?</strong><br>
-    If your income doesn’t match your goals or workload, you’re likely undercharging.</p>
+        <p><strong>What hourly rate should I charge?</strong><br>
+        Your rate should cover your expenses, income goals, and available working hours. The calculator helps you estimate a realistic number.</p>
 
-    <p><strong>What hourly rate should I charge?</strong><br>
-    Your rate should cover expenses, income goals, and available working hours.</p>
-
-    <p><strong>How do I price a project?</strong><br>
-    Estimate your hours × your rate and add a buffer.</p>
+        <p><strong>How do I price a project?</strong><br>
+        Estimate your hours, multiply by your hourly rate, and add a buffer. The project calculator above does this automatically.</p>
+    </div>
 </div>
-
-<script>
 
 <script>
 function calculate() {
@@ -303,6 +340,20 @@ function calculateProjectPrice() {
         "Suggested project price: $" + finalPrice.toFixed(2);
 }
 
+function captureLead() {
+    let email = document.getElementById("emailCapture").value;
+
+    if (!email) {
+        document.getElementById("leadMessage").innerText = "Please enter your email.";
+        return;
+    }
+
+    document.getElementById("leadMessage").innerText =
+        "Thanks! Your pricing plan request is noted.";
+
+    console.log("New lead:", email);
+}
+
 document.querySelectorAll('.calc').forEach((detail) => {
     detail.addEventListener('toggle', function () {
         if (this.open) {
@@ -318,6 +369,3 @@ document.querySelectorAll('.calc').forEach((detail) => {
 
 </body>
 </html>
-<p style="margin-top: 40px; font-size: 0.9rem; opacity: 0.7;">
-Built as a simple tool to help freelancers price their work more confidently.
-</p>

@@ -162,7 +162,17 @@ button:hover {
             <button onclick="calculate()">Calculate</button>
 
             <div class="result" id="result"></div>
-        </div>
+<div style="margin-top: 16px; padding: 14px; background: #f0f4ff; border-radius: 8px;">
+  <strong>Want a personalized pricing plan?</strong>
+  <p style="margin: 6px 0;">I’ll break down your exact pricing strategy and income plan.</p>
+
+  <input id="emailCapture" type="email" placeholder="Enter your email"
+         style="width: 100%; padding: 10px; margin-bottom: 8px;">
+
+  <button onclick="captureLead()">Get My Pricing Plan</button>
+
+  <div id="leadMessage" style="margin-top: 8px;"></div>
+</div>
     </details>
 
     <details class="calc">

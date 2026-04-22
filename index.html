@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Price My Work Calculator</title>
+  <meta name="description" content="Free calculator to estimate a sustainable hourly rate, day rate, and project minimum for freelancers and service providers." />
+  <style>
+    :root {
+      --bg: #f7f7f5;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --accent: #1f6f5f;
+      --accent-soft: #e7f3ef;
+      --warn: #8a5a00;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 18px 40px;
+    }
+    .hero {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      line-height: 1.1;
+    }
+    .hero p {
+      margin: 0 auto;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    h2 {
+      font-size: 1.15rem;
+      margin: 0 0 14px;
+    }
+    .field {
+      margin-bottom: 14px;
+    }
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+    .help {
+      display: block;
+      color: var(--muted);
+      font-weight: 400;
+      font-size: 0.86rem;
+      margin-top: 2px;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid #cfd5dc;
+      font-size: 1rem;
+      background: #fff;
+    }
+    input[type="range"] {
+      width: 100%;
+      margin-top: 10px;
+    }
+    .range-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    button {
+      appearance: none;
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 0.98rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .primary {
+      background: var(--accent);
+      color: white;
+    }
+    .secondary {
+      background: #eef2f7;
+      color: var(--text);
+    }
+    .result-box {
+      background: var(--accent-soft);
+      border: 1px solid #cfe5de;
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+    .kpi {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin: 6px 0 4px;
+    }
+    .small {
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+    .mini-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .mini {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: #fff;
+    }
+    .mini strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-top: 4px;
+    }
+    .notes {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .tips {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--text);
+    }
+    .tips li { margin-bottom: 8px; }
+    .notice {
+      background: #fff7e5;
+      border: 1px solid #f0dbac;
+      color: var(--warn);
+      border-radius: 14px;
+      padding: 12px;
+      font-size: 0.92rem;
+      margin-top: 14px;
+    }
+    footer {
+      margin-top: 22px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+    @media (max-width: 800px) {
+      .grid { grid-template-columns: 1fr; }
+      .mini-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>Price My Work Calculator</h1>
+      <p>
+        A simple free tool for freelancers, contractors, and service providers.
+        Enter your income goal, expenses, hours, and billable time to estimate a realistic hourly rate,
+        day rate, and minimum project price.
+      </p>
+    </section>
+
+    <div class="grid">
+      <section class="card">
+        <h2>Your numbers</h2>
+
+        <div class="field">
+          <label for="incomeGoal">Monthly take-home goal
+            <span class="help">How much you want to keep for yourself each month.</span>
+          </label>
+          <input id="incomeGoal" type="number" min="0" step="50" value="4000" />
+        </div>
+
+        <div class="field">
+          <label for="businessCosts">Monthly business costs
+            <span class="help">Software, supplies, phone, advertising, rent, contractor costs, and so on.</span>
+          </label>
+          <input id="businessCosts" type="number" min="0" step="50" value="800" />
+        </div>
+
+        <div class="field">
+          <label for="taxBuffer">Tax / savings buffer (%)
+            <span class="help">A rough cushion for taxes, slow months, and profit.</span>
+          </label>
+          <input id="taxBuffer" type="number" min="0" max="100" step="1" value="25" />
+        </div>
+
+        <div class="field">
+          <label for="hoursPerWeek">Hours worked per week
+            <span class="help">Total working hours, not just client-facing time.</span>
+          </label>
+          <input id="hoursPerWeek" type="number" min="1" max="100" step="1" value="30" />
+        </div>
+
+        <div class="field">
+          <label for="billablePercent">Billable time (%)
+            <span class="help">The share of your work week you can actually charge for.</span>
+          </label>
+          <input id="billablePercent" type="number" min="1" max="100" step="1" value="60" />
+          <input id="billableRange" type="range" min="1" max="100" step="1" value="60" />
+          <div class="range-row"><span>Less billable time</span><span>More billable time</span></div>
+        </div>
+
+        <div class="field">
+          <label for="hoursPerProject">Typical project hours
+            <span class="help">Use your best estimate for a standard job.</span>
+          </label>
+          <input id="hoursPerProject" type="number" min="1" step="0.5" value="6" />
+        </div>
+
+        <div class="btn-row">
+          <button class="primary" id="calcBtn">Calculate</button>
+          <button class="secondary" id="resetBtn">Reset</button>
+        </div>
+
+        <div class="notice">
+          This is a planning tool, not tax or financial advice. It gives you a usable pricing floor so you stop undercharging.
+        </div>
+      </section>
+
+      <aside class="card">
+        <h2>Your suggested pricing</h2>
+
+        <div class="result-box">
+          <div class="small">Suggested hourly rate</div>
+          <div class="kpi" id="hourlyRate">$64</div>
+          <div class="small" id="summaryLine">Based on your goals, costs, and available billable hours.</div>
+        </div>
+
+        <div class="mini-grid">
+          <div class="mini">
+            <div class="small">Suggested day rate</div>
+            <strong id="dayRate">$512</strong>
+          </div>
+          <div class="mini">
+            <div class="small">Minimum project price</div>
+            <strong id="projectRate">$384</strong>
+          </div>
+          <div class="mini">
+            <div class="small">Billable hours / month</div>
+            <strong id="billableHours">78</strong>
+          </div>
+          <div class="mini">
+            <div class="small">Monthly revenue target</div>
+            <strong id="revenueTarget">$5,000</strong>
+          </div>
+        </div>
+
+        <div class="notes">
+          <p><strong>Quick rule:</strong> if a job is annoying, rushed, or revision-heavy, charge above this floor.</p>
+          <ul class="tips">
+            <li>Add a rush fee for short deadlines.</li>
+            <li>Set a minimum charge even for tiny jobs.</li>
+            <li>Review your rate every few months.</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      Free one-page calculator. You can host this on GitHub Pages or Netlify.
+    </footer>
+  </div>
+
+  <script>
+    const el = (id) => document.getElementById(id);
+
+    const fields = {
+      incomeGoal: el('incomeGoal'),
+      businessCosts: el('businessCosts'),
+      taxBuffer: el('taxBuffer'),
+      hoursPerWeek: el('hoursPerWeek'),
+      billablePercent: el('billablePercent'),
+      billableRange: el('billableRange'),
+      hoursPerProject: el('hoursPerProject')
+    };
+
+    const outputs = {
+      hourlyRate: el('hourlyRate'),
+      dayRate: el('dayRate'),
+      projectRate: el('projectRate'),
+      billableHours: el('billableHours'),
+      revenueTarget: el('revenueTarget'),
+      summaryLine: el('summaryLine')
+    };
+
+    function currency(num) {
+      return new Intl.NumberFormat(undefined, {
+        style: 'currency',
+        currency: 'USD',
+        maximumFractionDigits: 0
+      }).format(num);
+    }
+
+    function calculate() {
+      const incomeGoal = parseFloat(fields.incomeGoal.value) || 0;
+      const businessCosts = parseFloat(fields.businessCosts.value) || 0;
+      const taxBufferPct = (parseFloat(fields.taxBuffer.value) || 0) / 100;
+      const hoursPerWeek = parseFloat(fields.hoursPerWeek.value) || 1;
+      const billablePercent = (parseFloat(fields.billablePercent.value) || 1) / 100;
+      const hoursPerProject = parseFloat(fields.hoursPerProject.value) || 1;
+
+      const baseRevenueNeeded = incomeGoal + businessCosts;
+      const revenueTarget = baseRevenueNeeded * (1 + taxBufferPct);
+      const billableHoursMonth = hoursPerWeek * 4.33 * billablePercent;
+      const hourlyRate = billableHoursMonth > 0 ? revenueTarget / billableHoursMonth : 0;
+      const dayRate = hourlyRate * 8;
+      const projectRate = hourlyRate * hoursPerProject;
+
+      outputs.hourlyRate.textContent = currency(Math.ceil(hourlyRate));
+      outputs.dayRate.textContent = currency(Math.ceil(dayRate));
+      outputs.projectRate.textContent = currency(Math.ceil(projectRate));
+      outputs.billableHours.textContent = Math.round(billableHoursMonth).toString();
+      outputs.revenueTarget.textContent = currency(Math.ceil(revenueTarget));
+      outputs.summaryLine.textContent = `To support about ${Math.round(billableHoursMonth)} billable hours each month, you likely need roughly ${currency(Math.ceil(revenueTarget))} in monthly revenue.`;
+    }
+
+    function resetForm() {
+      fields.incomeGoal.value = 4000;
+      fields.businessCosts.value = 800;
+      fields.taxBuffer.value = 25;
+      fields.hoursPerWeek.value = 30;
+      fields.billablePercent.value = 60;
+      fields.billableRange.value = 60;
+      fields.hoursPerProject.value = 6;
+      calculate();
+    }
+
+    fields.billableRange.addEventListener('input', (e) => {
+      fields.billablePercent.value = e.target.value;
+      calculate();
+    });
+
+    fields.billablePercent.addEventListener('input', (e) => {
+      const v = Math.min(100, Math.max(1, e.target.value || 1));
+      fields.billableRange.value = v;
+      calculate();
+    });
+
+    Object.values(fields).forEach((field) => {
+      if (field.id !== 'billableRange') {
+        field.addEventListener('input', calculate);
+      }
+    });
+
+    el('calcBtn').addEventListener('click', calculate);
+    el('resetBtn').addEventListener('click', resetForm);
+
+    calculate();
+  </script>
+</body>
+</html>

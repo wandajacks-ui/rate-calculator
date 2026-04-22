@@ -141,7 +141,10 @@ button:hover {
    <p style="opacity: 0.8;">Free tools for freelancers, contractors, and service providers.</p>
     <p style="margin-top: 6px;">Figure out what to charge, what you’ll earn, what hourly rate you need, and what to quote for a project.</p>
 </div>
-
+<div style="margin: 18px 0; font-size: 0.95rem; line-height: 1.5;">
+    <p><strong>How this works:</strong></p>
+    <p>This page helps freelancers and service providers figure out what to charge, what they’ll earn, and how to price projects. Use the calculators below to estimate your ideal hourly rate and income.</p>
+</div>
     <details class="calc" open>
         <summary>Monthly Goal → Hourly Rate</summary>
         <div class="calc-content">
@@ -219,9 +222,26 @@ button:hover {
             <button onclick="calculateProjectPrice()">Calculate</button>
 
             <div class="result" id="projectResult"></div>
-        </div>
+        </div> <!-- last calculator -->
     </details>
+
+</div> <!-- wrap -->
+
+<!-- 👇 ADD FAQ RIGHT HERE -->
+<div class="card" style="margin-top: 40px;">
+    <h3>Common Questions</h3>
+
+    <p><strong>How do I know if I’m undercharging?</strong><br>
+    If your income doesn’t match your goals or workload, you’re likely undercharging.</p>
+
+    <p><strong>What hourly rate should I charge?</strong><br>
+    Your rate should cover expenses, income goals, and available working hours.</p>
+
+    <p><strong>How do I price a project?</strong><br>
+    Estimate your hours × your rate and add a buffer.</p>
 </div>
+
+<script>
 
 <script>
 function calculate() {

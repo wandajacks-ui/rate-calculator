@@ -89,10 +89,9 @@ function calculate() {
     let total = Number(income) + Number(expenses);
     let monthlyHours = hours * 4;
     let rate = total / monthlyHours;
-
-    document.getElementById("result").innerText =
-        "You should charge about $" + rate.toFixed(2) + " per hour";
-}
+document.getElementById("result").innerText =
+    "Recommended hourly rate: $" + rate.toFixed(2);
+}  
 </script>
 
 </body>

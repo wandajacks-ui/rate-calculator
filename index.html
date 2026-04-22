@@ -271,6 +271,18 @@ function calculateProjectPrice() {
     document.getElementById("projectResult").innerText =
         "Suggested project price: $" + finalPrice.toFixed(2);
 }
+
+document.querySelectorAll('.calc').forEach((detail) => {
+    detail.addEventListener('toggle', function () {
+        if (this.open) {
+            document.querySelectorAll('.calc').forEach((other) => {
+                if (other !== this) {
+                    other.open = false;
+                }
+            });
+        }
+    });
+});
 </script>
 
 </body>

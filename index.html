@@ -3,165 +3,59 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Freelance Rate Calculator – What Should I Charge?</title>
-<meta name="description" content="Free freelance rate calculator. Find your ideal hourly rate, yearly income targets, and project pricing in minutes.">
+
+<title>Freelance Rate & Income Calculators</title>
 
 <style>
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: #f7f7f5;
-    margin: 0;
-    padding: 16px;
-    color: #1f2937;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f7f7f5;
+  margin: 0;
+  padding: 20px;
+  color: #1f2937;
 }
 
 .wrap {
-    max-width: 720px;
-    margin: auto;
+  max-width: 700px;
+  margin: auto;
 }
 
 .hero {
-    text-align: center;
-    margin-bottom: 22px;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-.hero h1 {
-    font-size: 2rem;
-    line-height: 1.15;
-    margin: 0 0 10px 0;
-}
-
-.hero p {
-    font-size: 1rem;
-    margin: 0;
-}
-
-.calc {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 10px 24px rgba(0,0,0,0.07);
-    margin-top: 16px;
-    overflow: hidden;
-}
-
-.calc summary {
-    list-style: none;
-    cursor: pointer;
-    padding: 16px;
-    font-weight: 600;
-    font-size: 1.05rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.calc summary::-webkit-details-marker {
-    display: none;
-}
-
-.calc summary::after {
-    content: "+";
-    font-size: 1.3rem;
-    line-height: 1;
-    color: #2563eb;
-}
-
-.calc[open] summary::after {
-    content: "−";
-}
-
-.calc-content {
-    padding: 0 16px 16px 16px;
-    border-top: 1px solid #e5e7eb;
-}
-
-.calc-content p {
-    margin-top: 12px;
-    margin-bottom: 12px;
-    font-size: 0.95rem;
-}
-
-.card {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 10px 24px rgba(0,0,0,0.07);
-    margin-top: 16px;
-    padding: 16px;
-}
-
-label {
-    display: block;
-    margin-top: 10px;
-    margin-bottom: 4px;
-    font-weight: 500;
+.card, .lead-box, details {
+  background: white;
+  padding: 18px;
+  border-radius: 10px;
+  margin-top: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
 }
 
 input {
-    width: 100%;
-    padding: 9px 10px;
-    margin: 0 0 8px 0;
-    font-size: 0.98rem;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
 }
 
 button {
-    padding: 11px;
-    width: 100%;
-    background: #2563eb;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 6px;
-    font-size: 0.98rem;
-    margin-top: 8px;
-}
-
-button:hover {
-    background: #1d4ed8;
+  padding: 12px;
+  width: 100%;
+  background: #2563eb;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 
 .result {
-    margin-top: 14px;
-    font-weight: bold;
-    font-size: 1rem;
+  margin-top: 15px;
+  font-weight: bold;
 }
 
-.lead-box {
-    margin-top: 16px;
-    padding: 14px;
-    background: #f0f4ff;
-    border-radius: 8px;
-}
-
-.lead-box p {
-    margin: 6px 0;
-    font-size: 0.94rem;
-}
-
-.faq h2 {
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
-.faq p {
-    line-height: 1.5;
-    font-size: 0.95rem;
-}
-
-@media (max-width: 640px) {
-    .hero h1 {
-        font-size: 1.65rem;
-    }
-
-    .calc summary {
-        font-size: 1rem;
-        padding: 14px;
-    }
-
-    .calc-content,
-    .card {
-        padding: 14px;
-    }
+summary {
+  font-weight: bold;
+  cursor: pointer;
 }
 </style>
 </head>
@@ -169,204 +63,174 @@ button:hover {
 <body>
 
 <div class="wrap">
-    <div class="hero">
-        <h1>Freelance Rate & Income Calculators</h1>
-        <p style="opacity: 0.8;">Free tools for freelancers, contractors, and service providers.</p>
-        <p style="margin-top: 6px;">Figure out what to charge, what you’ll earn, what hourly rate you need, and what to quote for a project.</p>
-        <p style="margin-top: 10px; font-size: 0.95rem; opacity: 0.7;">Used by freelancers, service providers, and small business owners to price more confidently.</p>
-    </div>
 
-    <div style="margin: 18px 0; font-size: 0.95rem; line-height: 1.5;">
-        <p><strong>How this works:</strong></p>
-        <p>This page helps freelancers and service providers figure out what to charge, what they’ll earn, and how to price projects. Use the calculators below to estimate your ideal hourly rate and income.</p>
-    </div>
-
-    <details class="calc" open>
-        <summary>Monthly Goal → Hourly Rate</summary>
-        <div class="calc-content">
-            <p>Enter your monthly goal, expenses, and hours per week to estimate your hourly rate.</p>
-
-            <label>Monthly Income Goal</label>
-            <input id="income" type="number" value="4000">
-
-            <label>Monthly Expenses</label>
-            <input id="expenses" type="number" value="1000">
-
-            <label>Hours Per Week</label>
-            <input id="hours" type="number" value="30">
-
-            <button onclick="calculate()">Calculate</button>
-
-            <div class="result" id="result"></div>
-
-            <div class="lead-box">
-               <strong>Get your exact pricing strategy (free)</strong>
-                <p>
-                    Includes:
-                    <br>✔ What to charge
-                    <br>✔ How to increase income without more hours
-                    <br>✔ Simple pricing mistakes to avoid
-                </p>
-<div style="margin-top: 12px;">
-  <iframe 
-    src="https://tally.so/embed/GxBMWe?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-    width="100%"
-    height="260"
-    frameborder="0">
-  </iframe>
+<div class="hero">
+  <h1>Freelance Rate & Income Calculators</h1>
+  <p style="opacity:0.8;">Free tools for freelancers, contractors, and service providers.</p>
+  <p style="margin-top:6px;">Figure out what to charge, what you’ll earn, what hourly rate you need, and what to quote for a project.</p>
 </div>
-            </div>
-        </div>
-    </details>
 
-    <details class="calc">
-        <summary>Hourly Rate → Yearly Income</summary>
-        <div class="calc-content">
-            <p>Enter your hourly rate, hours per week, and weeks per year to estimate annual income.</p>
+<!-- MAIN CALCULATOR -->
+<div class="card">
 
-            <label>Hourly Rate</label>
-            <input id="hourlyRate" type="number" value="35">
+<label>Monthly Income Goal</label>
+<input id="income" type="number" value="4000">
 
-            <label>Hours Per Week</label>
-            <input id="hoursPerWeekIncome" type="number" value="30">
+<label>Monthly Expenses</label>
+<input id="expenses" type="number" value="1000">
 
-            <label>Weeks Per Year</label>
-            <input id="weeksPerYear" type="number" value="48">
+<label>Hours Per Week</label>
+<input id="hours" type="number" value="30">
 
-            <button onclick="calculateIncome()">Calculate</button>
+<button onclick="calculate()">Calculate</button>
 
-            <div class="result" id="incomeResult"></div>
-        </div>
-    </details>
+<div class="result" id="result"></div>
 
-    <details class="calc">
-        <summary>Yearly Goal → Required Hourly Rate</summary>
-        <div class="calc-content">
-            <p>Enter your yearly income goal, hours per week, and weeks per year to see the hourly rate you need.</p>
+</div>
 
-            <label>Yearly Income Goal</label>
-            <input id="yearlyGoal" type="number" value="75000">
+<!-- LEAD BOX -->
+<div class="lead-box">
 
-            <label>Hours Per Week</label>
-            <input id="hoursPerWeekGoal" type="number" value="30">
+<strong>Get your exact pricing strategy (free)</strong>
 
-            <label>Weeks Per Year</label>
-            <input id="weeksPerYearGoal" type="number" value="48">
+<p style="margin-top:6px;">
+Takes 30 seconds. Instant results.
+</p>
 
-            <button onclick="calculateHourlyNeeded()">Calculate</button>
+<p>
+<strong>What you’ll get:</strong>
+<br>✓ What to charge
+<br>✓ How to increase income without more hours
+<br>✓ Simple pricing mistakes to avoid
+</p>
 
-            <div class="result" id="hourlyNeededResult"></div>
-        </div>
-    </details>
+<div style="margin-top:12px;">
+<iframe 
+  src="https://tally.so/embed/GxBMWe?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+  width="100%"
+  height="320"
+  frameborder="0">
+</iframe>
+</div>
 
-    <details class="calc">
-        <summary>Project Price Calculator</summary>
-        <div class="calc-content">
-            <p>Estimate what to charge for a project based on your hourly rate, hours required, and an extra buffer.</p>
+</div>
 
-            <label>Your Hourly Rate</label>
-            <input id="projectHourlyRate" type="number" value="50">
+<!-- SECOND CALCULATOR -->
+<details>
+<summary>Hourly Rate → Yearly Income</summary>
 
-            <label>Estimated Hours for Project</label>
-            <input id="projectHours" type="number" value="12">
+<div class="card">
 
-            <label>Extra Buffer Percentage</label>
-            <input id="projectBuffer" type="number" value="15">
+<label>Hourly Rate</label>
+<input id="hourlyRate" type="number" value="35">
 
-            <button onclick="calculateProjectPrice()">Calculate</button>
+<label>Hours Per Week</label>
+<input id="hoursPerWeekIncome" type="number" value="30">
 
-            <div class="result" id="projectResult"></div>
-        </div>
-    </details>
+<label>Weeks Per Year</label>
+<input id="weeksPerYear" type="number" value="48">
 
-    <div class="card faq" style="margin-top: 40px;">
-        <h2>Common Questions</h2>
+<button onclick="calculateIncome()">Calculate</button>
 
-        <p><strong>How do I know if I’m undercharging?</strong><br>
-        If your income doesn’t match your goals or workload, you’re likely undercharging. Use the calculator above to compare your current rate to your target income.</p>
+<div class="result" id="incomeResult"></div>
 
-        <p><strong>What hourly rate should I charge?</strong><br>
-        Your rate should cover your expenses, income goals, and available working hours. The calculator helps you estimate a realistic number.</p>
+</div>
+</details>
 
-        <p><strong>How do I price a project?</strong><br>
-        Estimate your hours, multiply by your hourly rate, and add a buffer. The project calculator above does this automatically.</p>
-    </div>
+<!-- THIRD CALCULATOR -->
+<details>
+<summary>Yearly Goal → Required Hourly Rate</summary>
+
+<div class="card">
+
+<label>Yearly Income Goal</label>
+<input id="yearlyGoal" type="number" value="75000">
+
+<label>Hours Per Week</label>
+<input id="hoursPerWeekGoal" type="number" value="30">
+
+<label>Weeks Per Year</label>
+<input id="weeksPerYearGoal" type="number" value="48">
+
+<button onclick="calculateHourlyNeeded()">Calculate</button>
+
+<div class="result" id="hourlyNeededResult"></div>
+
+</div>
+</details>
+
+<!-- PROJECT CALCULATOR -->
+<details>
+<summary>Project Price Calculator</summary>
+
+<div class="card">
+
+<label>Your Hourly Rate</label>
+<input id="projectHourlyRate" type="number" value="50">
+
+<label>Estimated Hours</label>
+<input id="projectHours" type="number" value="12">
+
+<label>Buffer %</label>
+<input id="projectBuffer" type="number" value="15">
+
+<button onclick="calculateProject()">Calculate</button>
+
+<div class="result" id="projectResult"></div>
+
+</div>
+</details>
+
 </div>
 
 <script>
 function calculate() {
-    let income = document.getElementById("income").value;
-    let expenses = document.getElementById("expenses").value;
-    let hours = document.getElementById("hours").value;
+  let income = document.getElementById("income").value;
+  let expenses = document.getElementById("expenses").value;
+  let hours = document.getElementById("hours").value;
 
-    let total = Number(income) + Number(expenses);
-    let monthlyHours = Number(hours) * 4;
-    let rate = total / monthlyHours;
+  let total = Number(income) + Number(expenses);
+  let monthlyHours = hours * 4;
+  let rate = total / monthlyHours;
 
-    document.getElementById("result").innerText =
-        "Recommended hourly rate: $" + rate.toFixed(2);
+  document.getElementById("result").innerText =
+    "Recommended hourly rate: $" + rate.toFixed(2);
 }
 
 function calculateIncome() {
-    let hourlyRate = document.getElementById("hourlyRate").value;
-    let hoursPerWeekIncome = document.getElementById("hoursPerWeekIncome").value;
-    let weeksPerYear = document.getElementById("weeksPerYear").value;
+  let rate = document.getElementById("hourlyRate").value;
+  let hours = document.getElementById("hoursPerWeekIncome").value;
+  let weeks = document.getElementById("weeksPerYear").value;
 
-    let annualIncome = Number(hourlyRate) * Number(hoursPerWeekIncome) * Number(weeksPerYear);
+  let income = rate * hours * weeks;
 
-    document.getElementById("incomeResult").innerText =
-        "Estimated yearly income: $" + annualIncome.toFixed(2);
+  document.getElementById("incomeResult").innerText =
+    "Estimated yearly income: $" + income.toFixed(2);
 }
 
 function calculateHourlyNeeded() {
-    let yearlyGoal = document.getElementById("yearlyGoal").value;
-    let hoursPerWeekGoal = document.getElementById("hoursPerWeekGoal").value;
-    let weeksPerYearGoal = document.getElementById("weeksPerYearGoal").value;
+  let goal = document.getElementById("yearlyGoal").value;
+  let hours = document.getElementById("hoursPerWeekGoal").value;
+  let weeks = document.getElementById("weeksPerYearGoal").value;
 
-    let totalHours = Number(hoursPerWeekGoal) * Number(weeksPerYearGoal);
-    let hourlyNeeded = Number(yearlyGoal) / totalHours;
+  let totalHours = hours * weeks;
+  let rate = goal / totalHours;
 
-    document.getElementById("hourlyNeededResult").innerText =
-        "Required hourly rate: $" + hourlyNeeded.toFixed(2);
+  document.getElementById("hourlyNeededResult").innerText =
+    "Required hourly rate: $" + rate.toFixed(2);
 }
 
-function calculateProjectPrice() {
-    let projectHourlyRate = document.getElementById("projectHourlyRate").value;
-    let projectHours = document.getElementById("projectHours").value;
-    let projectBuffer = document.getElementById("projectBuffer").value;
+function calculateProject() {
+  let rate = document.getElementById("projectHourlyRate").value;
+  let hours = document.getElementById("projectHours").value;
+  let buffer = document.getElementById("projectBuffer").value;
 
-    let basePrice = Number(projectHourlyRate) * Number(projectHours);
-    let finalPrice = basePrice + (basePrice * (Number(projectBuffer) / 100));
+  let base = rate * hours;
+  let total = base * (1 + buffer / 100);
 
-    document.getElementById("projectResult").innerText =
-        "Suggested project price: $" + finalPrice.toFixed(2);
+  document.getElementById("projectResult").innerText =
+    "Recommended project price: $" + total.toFixed(2);
 }
-
-function captureLead() {
-    let email = document.getElementById("emailCapture").value;
-
-    if (!email) {
-        document.getElementById("leadMessage").innerText = "Please enter your email.";
-        return;
-    }
-
-    document.getElementById("leadMessage").innerText =
-        "Thanks! Your pricing plan request is noted.";
-
-    console.log("New lead:", email);
-}
-
-document.querySelectorAll('.calc').forEach((detail) => {
-    detail.addEventListener('toggle', function () {
-        if (this.open) {
-            document.querySelectorAll('.calc').forEach((other) => {
-                if (other !== this) {
-                    other.open = false;
-                }
-            });
-        }
-    });
-});
 </script>
 
 </body>

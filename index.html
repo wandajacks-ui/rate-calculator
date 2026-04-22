@@ -80,7 +80,23 @@ button {
 </div>
 
 </div>
+<div class="card" style="margin-top: 24px;">
+    <h2>Hourly Rate to Yearly Income Calculator</h2>
+    <p>Enter your hourly rate, hours per week, and weeks per year to estimate annual income.</p>
 
+    <label>Hourly Rate</label>
+    <input id="hourlyRate" type="number" value="35">
+
+    <label>Hours Per Week</label>
+    <input id="hoursPerWeekIncome" type="number" value="30">
+
+    <label>Weeks Per Year</label>
+    <input id="weeksPerYear" type="number" value="48">
+
+    <button onclick="calculateIncome()">Calculate Annual Income</button>
+
+    <div class="result" id="incomeResult"></div>
+</div>
 <script>
 function calculate() {
     let income = document.getElementById("income").value;
@@ -93,6 +109,16 @@ function calculate() {
 document.getElementById("result").innerText =
     "Recommended hourly rate: $" + rate.toFixed(2);
 }  
+function calculateIncome() {
+    let hourlyRate = document.getElementById("hourlyRate").value;
+    let hoursPerWeekIncome = document.getElementById("hoursPerWeekIncome").value;
+    let weeksPerYear = document.getElementById("weeksPerYear").value;
+
+    let annualIncome = Number(hourlyRate) * Number(hoursPerWeekIncome) * Number(weeksPerYear);
+
+    document.getElementById("incomeResult").innerText =
+        "Estimated yearly income: $" + annualIncome.toFixed(2);
+}
 </script>
 
 </body>

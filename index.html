@@ -10,46 +10,95 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background: #f7f7f5;
     margin: 0;
-    padding: 20px;
+    padding: 16px;
     color: #1f2937;
 }
 
 .wrap {
-    max-width: 800px;
+    max-width: 720px;
     margin: auto;
 }
 
 .hero {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+    font-size: 2.1rem;
+    line-height: 1.15;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1rem;
+    margin: 0;
 }
 
 .card {
     background: white;
-    padding: 20px;
+    padding: 16px;
     border-radius: 10px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-    margin-top: 24px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.07);
+    margin-top: 18px;
+}
+
+.card h2 {
+    font-size: 1.2rem;
+    margin: 0 0 12px 0;
+}
+
+.card p {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 4px;
+    font-weight: 500;
 }
 
 input {
     width: 100%;
-    padding: 10px;
-    margin: 10px 0;
+    padding: 9px 10px;
+    margin: 0 0 8px 0;
+    font-size: 0.98rem;
+    box-sizing: border-box;
 }
 
 button {
-    padding: 12px;
+    padding: 11px;
     width: 100%;
     background: #2563eb;
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 6px;
+    font-size: 0.98rem;
+    margin-top: 8px;
+}
+
+button:hover {
+    background: #1d4ed8;
 }
 
 .result {
-    margin-top: 20px;
+    margin-top: 14px;
     font-weight: bold;
+    font-size: 1rem;
+}
+
+@media (max-width: 640px) {
+    .hero h1 {
+        font-size: 1.7rem;
+    }
+
+    .card {
+        padding: 14px;
+    }
 }
 </style>
 </head>
@@ -58,64 +107,79 @@ button {
 
 <div class="wrap">
 
-<div class="hero">
-<h1>Freelance Rate & Income Calculators</h1>
-<p>Figure out what to charge, what you’ll earn, and what you need to hit your income goals.</p>
-</div>
+    <div class="hero">
+        <h1>Freelance Rate & Income Calculators</h1>
+        <p>Figure out what to charge, what you’ll earn, what hourly rate you need, and what to quote for a project.</p>
+    </div>
 
-<!-- CALCULATOR 1 -->
-<div class="card">
-<h2>Monthly Goal → Hourly Rate</h2>
+    <div class="card">
+        <h2>Monthly Goal → Hourly Rate</h2>
 
-<label>Monthly Income Goal</label>
-<input id="income" type="number" value="4000">
+        <label>Monthly Income Goal</label>
+        <input id="income" type="number" value="4000">
 
-<label>Monthly Expenses</label>
-<input id="expenses" type="number" value="1000">
+        <label>Monthly Expenses</label>
+        <input id="expenses" type="number" value="1000">
 
-<label>Hours Per Week</label>
-<input id="hours" type="number" value="30">
+        <label>Hours Per Week</label>
+        <input id="hours" type="number" value="30">
 
-<button onclick="calculate()">Calculate</button>
+        <button onclick="calculate()">Calculate</button>
 
-<div class="result" id="result"></div>
-</div>
+        <div class="result" id="result"></div>
+    </div>
 
-<!-- CALCULATOR 2 -->
-<div class="card">
-<h2>Hourly Rate → Yearly Income</h2>
+    <div class="card">
+        <h2>Hourly Rate → Yearly Income</h2>
 
-<label>Hourly Rate</label>
-<input id="hourlyRate" type="number" value="35">
+        <label>Hourly Rate</label>
+        <input id="hourlyRate" type="number" value="35">
 
-<label>Hours Per Week</label>
-<input id="hoursPerWeekIncome" type="number" value="30">
+        <label>Hours Per Week</label>
+        <input id="hoursPerWeekIncome" type="number" value="30">
 
-<label>Weeks Per Year</label>
-<input id="weeksPerYear" type="number" value="48">
+        <label>Weeks Per Year</label>
+        <input id="weeksPerYear" type="number" value="48">
 
-<button onclick="calculateIncome()">Calculate</button>
+        <button onclick="calculateIncome()">Calculate</button>
 
-<div class="result" id="incomeResult"></div>
-</div>
+        <div class="result" id="incomeResult"></div>
+    </div>
 
-<!-- CALCULATOR 3 -->
-<div class="card">
-<h2>Yearly Goal → Required Hourly Rate</h2>
+    <div class="card">
+        <h2>Yearly Goal → Required Hourly Rate</h2>
 
-<label>Yearly Income Goal</label>
-<input id="yearlyGoal" type="number" value="75000">
+        <label>Yearly Income Goal</label>
+        <input id="yearlyGoal" type="number" value="75000">
 
-<label>Hours Per Week</label>
-<input id="hoursPerWeekGoal" type="number" value="30">
+        <label>Hours Per Week</label>
+        <input id="hoursPerWeekGoal" type="number" value="30">
 
-<label>Weeks Per Year</label>
-<input id="weeksPerYearGoal" type="number" value="48">
+        <label>Weeks Per Year</label>
+        <input id="weeksPerYearGoal" type="number" value="48">
 
-<button onclick="calculateHourlyNeeded()">Calculate</button>
+        <button onclick="calculateHourlyNeeded()">Calculate</button>
 
-<div class="result" id="hourlyNeededResult"></div>
-</div>
+        <div class="result" id="hourlyNeededResult"></div>
+    </div>
+
+    <div class="card">
+        <h2>Project Price Calculator</h2>
+        <p>Estimate what to charge for a project based on your hourly rate, hours required, and an extra buffer.</p>
+
+        <label>Your Hourly Rate</label>
+        <input id="projectHourlyRate" type="number" value="50">
+
+        <label>Estimated Hours for Project</label>
+        <input id="projectHours" type="number" value="12">
+
+        <label>Extra Buffer Percentage</label>
+        <input id="projectBuffer" type="number" value="15">
+
+        <button onclick="calculateProjectPrice()">Calculate</button>
+
+        <div class="result" id="projectResult"></div>
+    </div>
 
 </div>
 
@@ -126,7 +190,7 @@ function calculate() {
     let hours = document.getElementById("hours").value;
 
     let total = Number(income) + Number(expenses);
-    let monthlyHours = hours * 4;
+    let monthlyHours = Number(hours) * 4;
     let rate = total / monthlyHours;
 
     document.getElementById("result").innerText =
@@ -154,6 +218,18 @@ function calculateHourlyNeeded() {
 
     document.getElementById("hourlyNeededResult").innerText =
         "Required hourly rate: $" + hourlyNeeded.toFixed(2);
+}
+
+function calculateProjectPrice() {
+    let projectHourlyRate = document.getElementById("projectHourlyRate").value;
+    let projectHours = document.getElementById("projectHours").value;
+    let projectBuffer = document.getElementById("projectBuffer").value;
+
+    let basePrice = Number(projectHourlyRate) * Number(projectHours);
+    let finalPrice = basePrice + (basePrice * (Number(projectBuffer) / 100));
+
+    document.getElementById("projectResult").innerText =
+        "Suggested project price: $" + finalPrice.toFixed(2);
 }
 </script>
 
